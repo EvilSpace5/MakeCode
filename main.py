@@ -1,23 +1,4 @@
-def on_on_zero(status2):
-    game.game_over(False)
-    game.splash("YOU LOSE")
-statusbars.on_zero(StatusBarKind.health, on_on_zero)
-
-def on_on_overlap(sprite2, otherSprite2):
-    MeBoiHealth.value += -1
-sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap)
-
-def on_on_zero2(status):
-    game.game_over(True)
-    game.splash("YOU WIN")
-statusbars.on_zero(StatusBarKind.enemy_health, on_on_zero2)
-
 def on_combos_attach_combo():
-    MeBoiHealth.max += 500
-    MeBoiHealth.value = 500
-controller.combos.attach_combo("uuddlrlrab", on_combos_attach_combo)
-
-def on_combos_attach_combo2():
     global projectile
     projectile = sprites.create_projectile_from_sprite(img("""
             . . . . . . . . . . . . . . . . 
@@ -41,7 +22,26 @@ def on_combos_attach_combo2():
         50,
         1)
     projectile.set_scale(1.25, ScaleAnchor.MIDDLE)
-controller.combos.attach_combo("ua", on_combos_attach_combo2)
+controller.combos.attach_combo("ua", on_combos_attach_combo)
+
+def on_on_zero(status2):
+    game.game_over(False)
+    game.splash("YOU LOSE")
+statusbars.on_zero(StatusBarKind.health, on_on_zero)
+
+def on_on_overlap(sprite2, otherSprite2):
+    MeBoiHealth.value += -1
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap)
+
+def on_on_zero2(status):
+    game.game_over(True)
+    game.splash("YOU WIN")
+statusbars.on_zero(StatusBarKind.enemy_health, on_on_zero2)
+
+def on_combos_attach_combo2():
+    MeBoiHealth.value = 500
+    MeBoiHealth.max += 500
+controller.combos.attach_combo("uuddlrlrab", on_combos_attach_combo2)
 
 def on_on_overlap2(sprite, otherSprite):
     MisterBadGuyHealth.value += -1
